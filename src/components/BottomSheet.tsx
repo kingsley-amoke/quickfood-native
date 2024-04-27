@@ -3,6 +3,7 @@ import React, { forwardRef, useCallback, useMemo } from "react";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
+  BottomSheetModalProvider,
   BottomSheetView,
   TouchableOpacity,
   useBottomSheet,
@@ -11,6 +12,7 @@ import {
 import Colors from "../constants/Colors";
 import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export type ref = BottomSheetModal;
 
@@ -48,7 +50,7 @@ const BottomSheet = forwardRef<ref>((props, ref) => {
         </View>
 
         <Text style={styles.subheader}>Your Location</Text>
-        <Link href={"/"} asChild>
+        <Link href={"/(modal)/location"} asChild>
           <TouchableOpacity>
             <View style={styles.item}>
               <Ionicons
