@@ -1,15 +1,16 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Stack } from "expo-router";
+import { Stack, useNavigation } from "expo-router";
 
-import { useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import CustomHeader from "@/src/components/CustomHeader";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Colors from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -18,6 +19,7 @@ export const unstable_settings = {
 
 export default function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -28,6 +30,29 @@ export default function RootLayoutNav() {
               name="index"
               options={{
                 header: () => <CustomHeader />,
+              }}
+            />
+
+            <Stack.Screen
+              name="(modal)/filters"
+              options={{
+                presentation: "modal",
+                headerTitle: "Filter",
+                headerShadowVisible: false,
+                headerStyle: {
+                  backgroundColor: Colors.lightGrey,
+                },
+                headerTitleAlign: "center",
+
+                headerLeft: () => (
+                  <TouchableOpacity onPress={navigation.goBack}>
+                    <Ionicons
+                      name="close-outline"
+                      size={28}
+                      color={Colors.primary}
+                    />
+                  </TouchableOpacity>
+                ),
               }}
             />
           </Stack>
