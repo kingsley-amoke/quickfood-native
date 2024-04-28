@@ -6,9 +6,12 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { useBasketStore } from "../store/basketStore";
-import Colors from "../constants/Colors";
+import { useBasketStore } from "@/src/store/basketStore";
+import Colors from "@/src/constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ConfettiCannon from "react-native-confetti-cannon";
+import { Link } from "expo-router";
+import StyleSwipeableRow from "@/src/components/SwipeableRow";
 
 const Basket = () => {
   const { reduceProduct, clearCart, total, products } = useBasketStore();
@@ -26,7 +29,24 @@ const Basket = () => {
   };
   return (
     <>
-      {order && <Text>Cool order</Text>}
+      {order && (
+        <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} fadeOut={true} />
+      )}
+      {order && (
+        <View style={{ marginTop: "50%", padding: 20, alignItems: "center" }}>
+          <Text
+            style={{ fontSize: 24, fontWeight: "bold", textAlign: "center" }}
+          >
+            Thank you for your order
+          </Text>
+          <Link href={"/"} asChild>
+            <TouchableOpacity style={styles.orderBtn}>
+              <Text style={styles.footerText}>New order</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+      )}
+
       {!order && (
         <>
           <FlatList
@@ -60,24 +80,34 @@ const Basket = () => {
               </View>
             }
             renderItem={({ item }) => (
-              <View style={styles.row}>
-                <Text style={{ color: Colors.primary }}>{item.quantity}x</Text>
-                <Text style={{ flex: 1, fontSize: 18 }}>{item.name}</Text>
-                <Text style={{ fontSize: 18 }}>
-                  ${item.price * item.quantity}
-                </Text>
-              </View>
+              <StyleSwipeableRow onDelete={() => reduceProduct(item)}>
+                <View style={styles.row}>
+                  <Text style={{ color: Colors.primary }}>
+                    {item.quantity}x
+                  </Text>
+                  <Text style={{ flex: 1, fontSize: 18 }}>{item.name}</Text>
+                  <Text style={{ fontSize: 18 }}>
+                    ${item.price * item.quantity}
+                  </Text>
+                </View>
+              </StyleSwipeableRow>
             )}
           />
+          <View style={styles.footer}>
+            <SafeAreaView
+              edges={["bottom"]}
+              style={{ backgroundColor: "#fff" }}
+            >
+              <TouchableOpacity
+                style={styles.fullButton}
+                onPress={startCheckout}
+              >
+                <Text style={styles.footerText}>Order Now</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+          </View>
         </>
       )}
-      <View style={styles.footer}>
-        <SafeAreaView edges={["bottom"]} style={{ backgroundColor: "#fff" }}>
-          <TouchableOpacity style={styles.fullButton} onPress={startCheckout}>
-            <Text style={styles.footerText}>Order Now</Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </View>
     </>
   );
 };
@@ -143,5 +173,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  orderBtn: {
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: "center",
+    width: 250,
+    height: 50,
+    justifyContent: "center",
+    marginTop: 20,
   },
 });
