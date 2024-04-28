@@ -1,6 +1,13 @@
-import { Image, SectionList, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ListRenderItem,
+  SectionList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useLayoutEffect } from "react";
-import { useNavigation } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -16,6 +23,19 @@ const Details = () => {
     data: food.meals,
     index,
   }));
+
+  const itemList: ListRenderItem<any> = ({ item, index }) => (
+    <Link href={"/"} asChild>
+      <TouchableOpacity style={styles.item}>
+        <View style={styles.itemList}>
+          <Text style={styles.dish}>{item.name}</Text>
+          <Text style={styles.dishText}>{item.info}</Text>
+          <Text style={styles.dishText}>${item.price}</Text>
+        </View>
+        <Image source={restaurant.img} style={styles.dishImage} />
+      </TouchableOpacity>
+    </Link>
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -79,7 +99,28 @@ const Details = () => {
             )}
           </Text>
           <Text style={styles.restaurantDescription}>{restaurant.about}</Text>
-          <SectionList data={DATA}></SectionList>
+          <SectionList
+            contentContainerStyle={{ paddingBottom: 50 }}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  marginHorizontal: 20,
+                  height: 1,
+                  backgroundColor: Colors.grey,
+                }}
+              />
+            )}
+            SectionSeparatorComponent={() => (
+              <View style={{ height: 1, backgroundColor: Colors.grey }} />
+            )}
+            scrollEnabled={false}
+            keyExtractor={(item, index) => `${item.id + index}`}
+            sections={DATA}
+            renderItem={itemList}
+            renderSectionHeader={({ section: { title, index } }) => (
+              <Text style={styles.sectionHeader}>{title}</Text>
+            )}
+          ></SectionList>
         </View>
       </ParallaxScrollView>
     </>
@@ -124,6 +165,34 @@ const styles = StyleSheet.create({
     margin: 16,
     lineHeight: 22,
     color: Colors.medium,
+  },
+  sectionHeader: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginTop: 40,
+    margin: 16,
+  },
+  item: {
+    backgroundColor: "#fff",
+    padding: 16,
+    flexDirection: "row",
+  },
+  itemList: {
+    flex: 1,
+  },
+  dish: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  dishText: {
+    fontSize: 14,
+    color: Colors.mediumDark,
+    paddingVertical: 4,
+  },
+  dishImage: {
+    height: 80,
+    width: 80,
+    borderRadius: 4,
   },
 });
 export default Details;
