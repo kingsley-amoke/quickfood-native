@@ -82,9 +82,16 @@ export default function RootLayoutNav() {
               options={{
                 presentation: "modal",
                 headerTitle: "",
-
+                headerTransparent: true,
                 headerLeft: () => (
-                  <TouchableOpacity onPress={navigation.goBack}>
+                  <TouchableOpacity
+                    onPress={navigation.goBack}
+                    style={{
+                      backgroundColor: "#fff",
+                      padding: 6,
+                      borderRadius: 50,
+                    }}
+                  >
                     <Ionicons
                       name="close-outline"
                       size={28}
