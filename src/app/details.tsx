@@ -1,6 +1,7 @@
 import {
   Image,
   ListRenderItem,
+
   ScrollView,
   SectionList,
   StyleSheet,
@@ -19,6 +20,8 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
+import { useBasketStore } from "@/src/store/basketStore";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Details = () => {
   const navigation = useNavigation();
@@ -48,6 +51,8 @@ const Details = () => {
       </TouchableOpacity>
     </Link>
   );
+
+  const { items, total } = useBasketStore();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -141,6 +146,8 @@ const Details = () => {
           ></SectionList>
         </View>
       </ParallaxScrollView>
+
+      {/* sticky segment */}
       <Animated.View style={[styles.stickySegment, animatedStyle]}>
         <View style={styles.segmentShadow}>
           <ScrollView
@@ -172,6 +179,20 @@ const Details = () => {
           </ScrollView>
         </View>
       </Animated.View>
+      {/* footer basket */}
+      {items > 0 && (
+        <View style={styles.footer}>
+          <SafeAreaView style={{ backgroundColor: "#fff" }} edges={["bottom"]}>
+            <Link href={"/basket"} asChild>
+              <TouchableOpacity style={styles.fullButton}>
+                <Text style={styles.basket}>{items}</Text>
+                <Text style={styles.footerText}>View basket</Text>
+                <Text style={styles.basketTotal}>${total.toFixed(2)}</Text>
+              </TouchableOpacity>
+            </Link>
+          </SafeAreaView>
+        </View>
+      )}
     </>
   );
 };
@@ -294,6 +315,53 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  footer: {
+    backgroundColor: "#fff",
+    paddingTop: 30,
+    position: "absolute",
+    bottom: 0,
+
+    left: 0,
+    width: "100%",
+    padding: 10,
+    elevation: 10,
+    shadowColor: "red",
+    shadowRadius: 30,
+    shadowOpacity: 0.1,
+    shadowOffset: {
+      height: -40,
+      width: 0,
+    },
+  },
+
+  basket: {
+    color: "#fff",
+    backgroundColor: "#19aa86",
+    padding: 8,
+    borderRadius: 2,
+    fontWeight: "bold",
+  },
+  basketTotal: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff",
+    paddingHorizontal: 8,
+  },
+  footerText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  fullButton: {
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flex: 1,
+    height: 50,
   },
 });
 export default Details;

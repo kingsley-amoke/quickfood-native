@@ -12,13 +12,17 @@ import Animated, {
 } from "react-native-reanimated";
 
 import * as Haptics from "expo-haptics";
+import { Product, useBasketStore } from "@/src/store/basketStore";
 
 const Dish = () => {
   const { id } = useLocalSearchParams();
   const item = getDishById(+id);
   const navigation = useNavigation();
 
+  const { addProduct } = useBasketStore();
+
   const addToCart = () => {
+    addProduct(item!);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     navigation.goBack();
   };
@@ -50,7 +54,9 @@ const Dish = () => {
         <View style={styles.footer}>
           <View>
             <TouchableOpacity style={styles.fullButton} onPress={addToCart}>
-              <Text style={styles.footerText}>Add for ${item?.price}</Text>
+              <Text style={styles.footerText}>
+                Add for ${item?.price?.toFixed(2)}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  buttonText: {},
+
   fullButton: {
     backgroundColor: Colors.primary,
     padding: 16,
