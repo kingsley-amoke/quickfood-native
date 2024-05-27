@@ -52,10 +52,10 @@ const CustomHeader = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
-          <Text style={styles.title}>Delivery Now</Text>
+          <Text style={styles.title}>Your Quick Food</Text>
           <View style={styles.locationName}>
-            <Text style={styles.subtitle}>Offa Kwara State</Text>
-            <Ionicons name="chevron-down" size={20} color={Colors.primary} />
+            {/* <Text style={styles.subtitle}></Text> */}
+            {/* <Ionicons name="chevron-down" size={20} color={Colors.primary} /> */}
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.profileButton}>

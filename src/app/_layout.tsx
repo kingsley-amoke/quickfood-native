@@ -32,6 +32,22 @@ export default function RootLayoutNav() {
                 header: () => <CustomHeader />,
               }}
             />
+             <Stack.Screen
+              name="details/[id]"
+              options={{
+                headerTitle: "Details",
+                headerTitleAlign: "center",
+                headerLeft: () => (
+                  <TouchableOpacity onPress={navigation.goBack}>
+                    <Ionicons
+                      name="arrow-back"
+                      size={28}
+                      color={Colors.primary}
+                    />
+                  </TouchableOpacity>
+                ),
+              }}
+            />
 
             <Stack.Screen
               name="(modal)/filters"
@@ -117,6 +133,7 @@ export default function RootLayoutNav() {
                 ),
               }}
             />
+           
           </Stack>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>

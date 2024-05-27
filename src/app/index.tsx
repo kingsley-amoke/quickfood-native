@@ -1,21 +1,23 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import Categories from "@/src/components/Categories";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Restaurants from "@/src/components/Restaurants";
+import { restaurants } from "@/assets/data/home";
+import { Restaurant } from "../constants/types";
 
 const Page = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <ScrollView style={{ marginBottom: 100 }}>
-          <Categories />
+        <View style={{ marginBottom: 100 }}>
+          {/* <Categories /> */}
           <Text style={styles.header}>Top picks in your neighborhood</Text>
-          <Restaurants />
+          <FlatList data={restaurants}renderItem={(item)=>Restaurants(item)}/>
           <Text style={styles.header}>Offers near you</Text>
-          <Restaurants />
-        </ScrollView>
-      </View>
+          {/* <Restaurants /> */}
+       </View>
+     </View>
     </SafeAreaView>
   );
 };
@@ -24,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     top: 90,
     backgroundColor: "#fff",
+    marginBottom:70
   },
   header: {
     fontSize: 18,

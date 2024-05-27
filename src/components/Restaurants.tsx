@@ -4,17 +4,18 @@ import React from "react";
 import { categories, restaurants } from "@/assets/data/home";
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
+import {Restaurant }from '@/src/constants/types'
 import Colors from "../constants/Colors";
 
-const Restaurants = () => {
+const Restaurants = ({item: restaurant}:{item:Restaurant}) => {
+
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ padding: 15 }}
-    >
-      {restaurants.map((restaurant, index) => (
-        <Link href={"/details"} key={index} asChild>
+    // <ScrollView
+    //   contentContainerStyle={{ padding: 15 }} 
+    // >
+
+        <Link href={{pathname: `/details/${restaurant.id}`, params: {id: restaurant.id}}} asChild>
           <TouchableOpacity>
             <View style={styles.categoryCard}>
               <Image source={restaurant.img} style={styles.image} />
@@ -30,15 +31,14 @@ const Restaurants = () => {
             </View>
           </TouchableOpacity>
         </Link>
-      ))}
-    </ScrollView>
+    // </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   categoryCard: {
-    width: 300,
-    height: 250,
+    width: '100%',
+    height: 320,
     backgroundColor: "#fff",
     marginEnd: 10,
     elevation: 2,
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.06,
     borderRadius: 4,
+   
   },
   categoryText: {
     paddingVertical: 5,
@@ -56,12 +57,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    flex: 5,
+    flex: 10,
     width: undefined,
   },
   categoryBox: {
-    flex: 2,
+    flex: 5,
     padding: 10,
+    
   },
 });
 export default Restaurants;
