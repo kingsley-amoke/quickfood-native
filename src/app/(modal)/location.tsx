@@ -47,7 +47,7 @@ const MapLocation = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <GooglePlacesAutocomplete
+      {/* <GooglePlacesAutocomplete
         placeholder="Search"
         onPress={(data, details = null) => {
           console.log(data, details);
@@ -57,7 +57,7 @@ const MapLocation = () => {
           language: "en",
         }}
         onFail={(err) => console.log(err)}
-      />
+      /> */}
       <MapView showsUserLocation={true} style={styles.map} region={location} />
       <View style={styles.absoluteBox}>
         <TouchableOpacity style={styles.button} onPress={navigation.goBack}>
