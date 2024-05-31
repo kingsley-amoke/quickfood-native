@@ -11,11 +11,8 @@ import Colors from "../constants/Colors";
 const Restaurants = ({item: restaurant}:{item:Restaurant}) => {
 
   return (
-    // <ScrollView
-    //   contentContainerStyle={{ padding: 15 }} 
-    // >
 
-        <Link href={{pathname: `/details/${restaurant.id}`, params: {id: restaurant.id}}} asChild>
+        <Link href={{pathname: `/restaurant/${restaurant.id}`, params:{id: restaurant.id}}} asChild>
           <TouchableOpacity>
             <View style={styles.categoryCard}>
               <Image source={restaurant.img} style={styles.image} />
@@ -31,7 +28,6 @@ const Restaurants = ({item: restaurant}:{item:Restaurant}) => {
             </View>
           </TouchableOpacity>
         </Link>
-    // </ScrollView>
   );
 };
 

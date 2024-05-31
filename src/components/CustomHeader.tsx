@@ -45,24 +45,24 @@ const CustomHeader = () => {
     <SafeAreaView style={styles.safeArea}>
       <BottomSheet ref={bottomSheetRef} />
       <View style={styles.container}>
-        <TouchableOpacity onPress={openModal}>
+        <TouchableOpacity>
           <Image
             source={require("@/assets/images/bike.png")}
             style={styles.bike}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
+        <TouchableOpacity style={styles.titleContainer}>
           <Text style={styles.title}>Your Quick Food</Text>
           <View style={styles.locationName}>
             {/* <Text style={styles.subtitle}></Text> */}
             {/* <Ionicons name="chevron-down" size={20} color={Colors.primary} /> */}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.profileButton}>
+        {/* <TouchableOpacity style={styles.profileButton}>
           <Ionicons name="person-outline" size={20} color={Colors.primary} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
-      <SearchBar />
+      {/* <SearchBar /> */}
     </SafeAreaView>
   );
 };
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: Colors.medium,
+  textAlign:'center'
   },
   subtitle: {
     fontSize: 20,

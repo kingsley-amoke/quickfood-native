@@ -11,22 +11,25 @@ const Page = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <View style={{ marginBottom: 100 }}>
-          {/* <Categories /> */}
           <Text style={styles.header}>Top picks in your neighborhood</Text>
-          <FlatList data={restaurants}renderItem={(item)=>Restaurants(item)}/>
-          <Text style={styles.header}>Offers near you</Text>
-          {/* <Restaurants /> */}
-       </View>
-     </View>
+          <FlatList
+            scrollEnabled
+            showsVerticalScrollIndicator={false}
+            data={restaurants}
+            renderItem={(item) => Restaurants(item)}
+          />
+          {/* <Text style={styles.header}>Offers near you</Text> */}
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    top: 90,
+    top: 0,
     backgroundColor: "#fff",
-    marginBottom:70
+    marginBottom: 40,
   },
   header: {
     fontSize: 18,

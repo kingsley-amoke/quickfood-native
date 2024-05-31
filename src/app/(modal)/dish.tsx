@@ -55,7 +55,7 @@ const Dish = () => {
           <View>
             <TouchableOpacity style={styles.fullButton} onPress={addToCart}>
               <Text style={styles.footerText}>
-                Add for ${item?.price?.toFixed(2)}
+                Add for NGN {item?.price?.toFixed(2)}
               </Text>
             </TouchableOpacity>
           </View>

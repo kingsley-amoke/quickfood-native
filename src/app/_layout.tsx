@@ -32,22 +32,6 @@ export default function RootLayoutNav() {
                 header: () => <CustomHeader />,
               }}
             />
-             <Stack.Screen
-              name="details/[id]"
-              options={{
-                headerTitle: "Details",
-                headerTitleAlign: "center",
-                headerLeft: () => (
-                  <TouchableOpacity onPress={navigation.goBack}>
-                    <Ionicons
-                      name="arrow-back"
-                      size={28}
-                      color={Colors.primary}
-                    />
-                  </TouchableOpacity>
-                ),
-              }}
-            />
 
             <Stack.Screen
               name="(modal)/filters"
@@ -71,7 +55,7 @@ export default function RootLayoutNav() {
                 ),
               }}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="(modal)/location"
               options={{
                 presentation: "fullScreenModal",
@@ -92,7 +76,7 @@ export default function RootLayoutNav() {
                   </TouchableOpacity>
                 ),
               }}
-            />
+            /> */}
             <Stack.Screen
               name="(modal)/dish"
               options={{
@@ -133,7 +117,22 @@ export default function RootLayoutNav() {
                 ),
               }}
             />
-           
+            <Stack.Screen
+              name="restaurant/[restaurant]"
+              options={{
+                headerTitle: "Basket",
+                headerTitleAlign: "center",
+                headerLeft: () => (
+                  <TouchableOpacity onPress={navigation.goBack}>
+                    <Ionicons
+                      name="arrow-back"
+                      size={28}
+                      color={Colors.primary}
+                    />
+                  </TouchableOpacity>
+                ),
+              }}
+            />
           </Stack>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>
