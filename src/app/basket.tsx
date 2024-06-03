@@ -18,8 +18,8 @@ const Basket = () => {
   const [order, setOrder] = useState(false);
 
   const FEES = {
-    service: 2.99,
-    delivery: 3.99,
+    service: 100,
+    delivery: 100,
   };
 
   const startCheckout = () => {
@@ -60,21 +60,21 @@ const Basket = () => {
                 <View style={{ height: 1, backgroundColor: Colors.grey }} />
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Subtotal</Text>
-                  <Text style={{ fontSize: 18 }}>${total.toFixed(2)}</Text>
+                  <Text style={{ fontSize: 18 }}>NGN {total.toFixed(2)}</Text>
                 </View>
 
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Service</Text>
-                  <Text style={{ fontSize: 18 }}>${FEES.service}</Text>
+                  <Text style={{ fontSize: 18 }}>NGN {FEES.service}</Text>
                 </View>
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Delivery</Text>
-                  <Text style={{ fontSize: 18 }}>${FEES.delivery}</Text>
+                  <Text style={{ fontSize: 18 }}>NGN {FEES.delivery}</Text>
                 </View>
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Order Total</Text>
                   <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                    ${(FEES.delivery + FEES.service + total).toFixed(2)}
+                    NGN {(FEES.delivery + FEES.service + total).toFixed(2)}
                   </Text>
                 </View>
               </View>
