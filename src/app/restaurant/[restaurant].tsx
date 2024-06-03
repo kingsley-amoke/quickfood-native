@@ -46,14 +46,14 @@ const restaurant = () => {
   }));
 
   const itemList: ListRenderItem<any> = ({ item, index }) => (
-    <Link href={{ pathname: "/(modal)/dish", params: { id: item.id } }} asChild>
+    <Link href={{ pathname: "/(modal)/dish", params: { itemId: item.id, restaurantId: id  } }} asChild>
       <TouchableOpacity style={styles.item}>
         <View style={styles.itemList}>
           <Text style={styles.dish}>{item.name}</Text>
           <Text style={styles.dishText}>{item.info}</Text>
           <Text style={styles.dishText}>NGN {item.price}</Text>
         </View>
-        <Image source={restaurant?.img} style={styles.dishImage} />
+        <Image source={item.img} style={styles.dishImage} />
       </TouchableOpacity>
     </Link>
   );

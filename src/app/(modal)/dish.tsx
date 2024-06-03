@@ -15,11 +15,12 @@ import * as Haptics from "expo-haptics";
 import { Product, useBasketStore } from "@/src/store/basketStore";
 
 const Dish = () => {
-  const { id } = useLocalSearchParams();
-  const item = getDishById(+id);
+  const { itemId, restaurantId } = useLocalSearchParams();
+  const item = getDishById(+itemId, +restaurantId);
   const navigation = useNavigation();
 
   const { addProduct } = useBasketStore();
+
 
   const addToCart = () => {
     addProduct(item!);
