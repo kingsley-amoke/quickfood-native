@@ -33,7 +33,7 @@ export const restaurants = [
     ratings: '(500+)',
     distance: '0.7 miles away',
     img: require('@/assets/images/chicken-republic.jpg'),
-    tags: ['Italian', 'Pizza', 'Pasta', 'Salads'],
+    tags: ['Continental', 'Pizza', 'Pasta', 'Salads'],
     duration: '35 - 45',
   },
   {
@@ -43,7 +43,7 @@ export const restaurants = [
     ratings: '(500+)',
     distance: '1.7 miles away',
     img: require('@/assets/images/item7.jpg'),
-    tags: ['Salads', 'Vegan', 'Healthy', 'British'],
+    tags: ['Salads', 'Vegan', 'Healthy', 'Shawarma'],
     duration: '15 - 30',
   },
   {
@@ -52,8 +52,8 @@ export const restaurants = [
     rating: '4.5 Excellent',
     ratings: '(500+)',
     distance: '3 miles away',
-    img: require('@/assets/data/r3.jpeg'),
-    tags: ['Spanish', 'Salads', 'Tpas', 'Pasta'],
+    img: require('@/assets/images/unique.jpg'),
+    tags: ['Swallows', 'Rice', 'Chicken', 'Pasta'],
     duration: '25 - 45',
   },
   {
